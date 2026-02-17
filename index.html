@@ -187,13 +187,15 @@
 
     .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+      grid-template-columns: 1fr; /* one card per row */
       gap: 14px;
     }
 
     .twoCol{
       display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      /* grid-template-columns: 1.2fr 0.8fr; */
+      grid-template-columns: 1fr; /* stack featured cards */
       gap: 14px;
       margin-bottom: 14px;
     }
