@@ -64,7 +64,7 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       box-shadow: var(--shadow);
-      overflow-y: auto;              /* right pane scroll */
+      overflow-y: auto;  /* right pane scroll */
       padding: 18px;
     }
 
@@ -87,16 +87,44 @@
       font-size: 14px;
     }
 
+    .badge{
+      display:inline-flex;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      align-self:flex-start;
+    }
+
     .divider{
       height:1px;
       background: var(--line);
       margin: 2px 0;
     }
 
+    .miniCard{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .miniTitle{
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.2px;
+    }
+
     .btnRow{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
+      margin-top:10px;
     }
 
     .btn{
@@ -121,30 +149,6 @@
       transform: translateY(-1px);
     }
 
-    .btn.primary{
-      border-color: rgba(14,165,233,0.35);
-      background: rgba(14,165,233,0.08);
-      color: #075985; /* sky-800 */
-    }
-
-    .btn.primary:hover{
-      border-color: rgba(14,165,233,0.55);
-      background: rgba(14,165,233,0.12);
-    }
-
-    .small{
-      font-size: 12px;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .miniCard{
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
-      background: #fff;
-    }
-
     .chips{
       display:flex;
       gap:8px;
@@ -167,6 +171,12 @@
       text-underline-offset: 3px;
     }
     .plainLink:hover{ color: var(--linkHover); }
+
+    .small{
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0;
+    }
 
     /* Right pane content */
     .sectionTitle{
@@ -290,25 +300,16 @@
         <p class="kicker">Auckland, New Zealand</p>
       </div>
 
+      <span class="badge">GitHub Pages portfolio</span>
+
       <p class="intro">
         Hands-on software developer and data professional with experience building and supporting business systems,
         dashboards, and data-driven tools. Strong in Python, SQL, relational data modelling, ETL pipelines, and BI tools.
       </p>
 
       <div class="miniCard">
-        <p class="small" style="margin:0;">
-          Quick links
-        </p>
-        <div class="btnRow" style="margin-top:10px;">
-          <button class="btn primary" type="button" data-target="projects">Projects</button>
-          <button class="btn" type="button" data-target="skills">Skills</button>
-          <button class="btn" type="button" data-target="contact">Contact</button>
-        </div>
-      </div>
-
-      <div class="miniCard">
-        <p class="small" style="margin:0;">Profiles</p>
-        <div class="btnRow" style="margin-top:10px;">
+        <p class="miniTitle">Profiles</p>
+        <div class="btnRow">
           <a class="btn" href="https://github.com/jeseacor" target="_blank" rel="noreferrer">GitHub</a>
           <!-- Replace placeholders with your real profile links -->
           <a class="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -317,19 +318,34 @@
       </div>
 
       <div class="miniCard">
-        <p class="small" style="margin:0;">
-          Contact
-        </p>
+        <p class="miniTitle">Skills</p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">SQL</span>
+          <span class="chip">ETL</span>
+          <span class="chip">Data modelling</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Qlik Sense</span>
+          <span class="chip">Streamlit</span>
+          <span class="chip">Time series</span>
+          <span class="chip">APIs</span>
+          <span class="chip">Git and GitHub</span>
+        </div>
+      </div>
+
+      <div class="miniCard">
+        <p class="miniTitle">Contact</p>
         <p style="margin:10px 0 0; font-size:14px;">
           <a class="plainLink" href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
-          <span class="muted">GitHub Pages:</span> <span class="muted">jesecor.github.io/portfolio</span>
+          <span class="muted">Location:</span> Auckland, New Zealand<br />
+          <span class="muted">Portfolio:</span> <a class="plainLink" href="https://jesecor.github.io/portfolio/" target="_blank" rel="noreferrer">jesecor.github.io/portfolio</a>
         </p>
       </div>
 
       <div class="divider"></div>
 
       <p class="small">
-        Tip: Replace the "add link" placeholders in projects once your Streamlit, Kaggle, Market, or presentation URLs are ready.
+        Tip: replace the "add link" placeholders in projects once your Streamlit, Kaggle, Market, or presentation URLs are ready.
       </p>
 
       <p class="small" style="margin-top:auto;">
@@ -339,7 +355,6 @@
 
     <!-- RIGHT PANEL (SCROLLING) -->
     <main class="right" id="scrollPane">
-
       <section id="projects">
         <h2 class="sectionTitle">Projects</h2>
 
@@ -497,81 +512,19 @@
             </div>
           </div>
         </div>
-      </section>
-
-      <section id="skills" style="margin-top:18px;">
-        <h2 class="sectionTitle">Skills snapshot</h2>
-
-        <div class="grid">
-          <div class="card">
-            <h3 style="margin-top:0;">Data science and ML</h3>
-            <p class="muted" style="margin:8px 0 0;">
-              Python, R, statistical analysis, predictive modelling, time-series forecasting, data wrangling.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3 style="margin-top:0;">BI and visualization</h3>
-            <p class="muted" style="margin:8px 0 0;">
-              Power BI, Qlik Sense, Plotly, Matplotlib, Seaborn, Streamlit.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3 style="margin-top:0;">Data storage and engineering</h3>
-            <p class="muted" style="margin:8px 0 0;">
-              SQL Server, SQLite, relational design, querying, optimization, ETL pipelines.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3 style="margin-top:0;">Software and DevOps basics</h3>
-            <p class="muted" style="margin:8px 0 0;">
-              Python, C#, SQL, PHP, VB, MQL5, Jade, .NET, Git and GitHub, CI basics, testing, packaging, documentation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" style="margin-top:18px;">
-        <h2 class="sectionTitle">Contact</h2>
-        <div class="card">
-          <p style="margin:0;">
-            Email: <a class="plainLink" href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
-            Location: <span class="muted">Auckland, New Zealand</span><br />
-            GitHub: <a class="plainLink" href="https://github.com/jeseacor" target="_blank" rel="noreferrer">github.com/jeseacor</a>
-          </p>
-          <p class="muted" style="margin:10px 0 0;font-size:13px;">
-            Add your LinkedIn and Kaggle profile links in the left panel when ready.
-          </p>
-        </div>
 
         <div class="footer">
           <div>Last updated: <span id="d2"></span></div>
         </div>
       </section>
-
     </main>
 
   </div>
 
   <script>
-    // Dates
     const today = new Date().toISOString().slice(0, 10);
     document.getElementById("d").textContent = today;
     document.getElementById("d2").textContent = today;
-
-    // Scroll right pane to section when clicking left buttons
-    const pane = document.getElementById("scrollPane");
-    document.querySelectorAll("[data-target]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-target");
-        const el = document.getElementById(id);
-        if (!el) return;
-        const top = el.offsetTop;
-        pane.scrollTo({ top: top - 6, behavior: "smooth" });
-      });
-    });
   </script>
 </body>
 </html>
