@@ -8,8 +8,8 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --card:#ffffff;
+      --bg:#f8fafc;        /* slate-50 */
+      --panel:#ffffff;
       --text:#0f172a;      /* slate-900 */
       --muted:#475569;     /* slate-600 */
       --line:#e2e8f0;      /* slate-200 */
@@ -17,12 +17,13 @@
       --title:#0ea5e9;     /* sky-500 */
       --link:#2563eb;      /* blue-600 */
       --linkHover:#1d4ed8; /* blue-700 */
-      --focus:#0ea5e9;
 
       --shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+      --shadow2: 0 14px 30px rgba(15, 23, 42, 0.10);
     }
 
     *{box-sizing:border-box}
+    html, body{height:100%}
 
     body{
       margin:0;
@@ -34,50 +35,74 @@
 
     a{color:inherit}
 
-    .wrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 34px 18px 64px;
-    }
-
-    header{
+    /* Two-panel layout */
+    .layout{
       display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:18px;
-      flex-wrap:wrap;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--line);
+      height:100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 14px;
+      padding: 18px;
     }
 
+    .left{
+      width: 360px;
+      min-width: 320px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+
+    .right{
+      flex: 1;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow-y: auto;              /* right pane scroll */
+      padding: 18px;
+    }
+
+    /* Sidebar content */
     h1{
-      font-size: 36px;
       margin: 0;
+      font-size: 32px;
       letter-spacing: 0.2px;
     }
 
     .kicker{
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: 13px;
-      margin: 6px 0 0;
     }
 
-    .subtitle{
-      margin: 10px 0 0;
+    .intro{
+      margin: 0;
       color: var(--muted);
-      max-width: 900px;
+      font-size: 14px;
     }
 
-    nav{
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 2px 0;
+    }
+
+    .btnRow{
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
-      margin-top: 14px;
+      gap:10px;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:8px;
       padding: 10px 12px;
       border-radius: 12px;
@@ -86,40 +111,67 @@
       text-decoration:none;
       font-size: 14px;
       color: var(--text);
+      cursor:pointer;
       transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
     }
 
     .btn:hover{
-      border-color: #cbd5e1; /* slate-300 */
+      border-color: #cbd5e1;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
       transform: translateY(-1px);
     }
 
-    .btn:focus{
-      outline: 2px solid rgba(14,165,233,0.45);
-      outline-offset: 2px;
+    .btn.primary{
+      border-color: rgba(14,165,233,0.35);
+      background: rgba(14,165,233,0.08);
+      color: #075985; /* sky-800 */
     }
 
-    .badge{
-      border: 1px solid var(--line);
-      background: #f8fafc; /* slate-50 */
-      padding: 7px 10px;
-      border-radius: 999px;
+    .btn.primary:hover{
+      border-color: rgba(14,165,233,0.55);
+      background: rgba(14,165,233,0.12);
+    }
+
+    .small{
+      font-size: 12px;
       color: var(--muted);
-      font-size: 13px;
-      white-space: nowrap;
+      margin: 0;
     }
 
-    main{margin-top: 22px}
-
-    .section{
-      margin-top: 22px;
-      padding-top: 10px;
+    .miniCard{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
     }
 
-    .section h2{
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .chip{
+      font-size:12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #f8fafc;
+    }
+
+    .plainLink{
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .plainLink:hover{ color: var(--linkHover); }
+
+    /* Right pane content */
+    .sectionTitle{
       margin: 0 0 10px;
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: 0.2px;
     }
 
@@ -133,15 +185,12 @@
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 14px;
-    }
-
-    @media (max-width: 860px){
-      .twoCol{grid-template-columns:1fr}
+      margin-bottom: 14px;
     }
 
     .card{
       border: 1px solid var(--line);
-      background: var(--card);
+      background: #fff;
       border-radius: 14px;
       padding: 16px;
       box-shadow: var(--shadow);
@@ -150,7 +199,7 @@
 
     .card:hover{
       border-color: #cbd5e1;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+      box-shadow: var(--shadow2);
       transform: translateY(-1px);
     }
 
@@ -158,6 +207,7 @@
       margin: 0 0 6px;
       color: var(--title);
       letter-spacing: 0.2px;
+      font-size: 16px;
     }
 
     .card h3::after{
@@ -171,22 +221,6 @@
     }
 
     .muted{color: var(--muted)}
-
-    .chips{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-
-    .chip{
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      padding: 5px 8px;
-      border-radius: 999px;
-      background: #f8fafc;
-    }
 
     .links{
       display:flex;
@@ -213,27 +247,30 @@
       transform: translateY(-1px);
     }
 
-    .links a:focus{
-      outline: 2px solid rgba(14,165,233,0.45);
-      outline-offset: 2px;
-    }
-
-    .plainLink{
-      color: var(--link);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .plainLink:hover{
-      color: var(--linkHover);
-    }
-
-    footer{
-      margin-top: 26px;
+    .footer{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 13px;
-      border-top: 1px solid var(--line);
-      padding-top: 14px;
+    }
+
+    /* Responsive: stack panels */
+    @media (max-width: 980px){
+      .layout{
+        height:auto;
+        flex-direction:column;
+      }
+      .left{
+        width: 100%;
+        min-width: 0;
+      }
+      .right{
+        overflow: visible;
+      }
+      .twoCol{
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -244,38 +281,67 @@
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="layout">
 
-    <header>
+    <!-- LEFT PANEL -->
+    <aside class="left">
       <div>
         <h1>Jesus Eric Seacor</h1>
         <p class="kicker">Auckland, New Zealand</p>
-
-        <p class="subtitle">
-          Hands-on software developer and data professional with experience building and supporting business systems,
-          dashboards, and data-driven tools. Completed a Master of Information Sciences (with distinction), focused on
-          applied data science, automation, and software development. Strong in Python, SQL, relational data modelling,
-          ETL pipelines, and BI tools.
-        </p>
-
-        <nav>
-          <a class="btn" href="#projects">Projects</a>
-          <a class="btn" href="#skills">Skills</a>
-          <a class="btn" href="#contact">Contact</a>
-          <a class="btn" href="https://github.com/jeseacor" target="_blank" rel="noreferrer">GitHub</a>
-          <!-- Replace placeholders below with your real profile links -->
-          <a class="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Kaggle</a>
-        </nav>
       </div>
 
-      <div class="badge">Portfolio is live on GitHub Pages</div>
-    </header>
+      <p class="intro">
+        Hands-on software developer and data professional with experience building and supporting business systems,
+        dashboards, and data-driven tools. Strong in Python, SQL, relational data modelling, ETL pipelines, and BI tools.
+      </p>
 
-    <main>
+      <div class="miniCard">
+        <p class="small" style="margin:0;">
+          Quick links
+        </p>
+        <div class="btnRow" style="margin-top:10px;">
+          <button class="btn primary" type="button" data-target="projects">Projects</button>
+          <button class="btn" type="button" data-target="skills">Skills</button>
+          <button class="btn" type="button" data-target="contact">Contact</button>
+        </div>
+      </div>
 
-      <section id="projects" class="section">
-        <h2>Projects</h2>
+      <div class="miniCard">
+        <p class="small" style="margin:0;">Profiles</p>
+        <div class="btnRow" style="margin-top:10px;">
+          <a class="btn" href="https://github.com/jeseacor" target="_blank" rel="noreferrer">GitHub</a>
+          <!-- Replace placeholders with your real profile links -->
+          <a class="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Kaggle</a>
+        </div>
+      </div>
+
+      <div class="miniCard">
+        <p class="small" style="margin:0;">
+          Contact
+        </p>
+        <p style="margin:10px 0 0; font-size:14px;">
+          <a class="plainLink" href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
+          <span class="muted">GitHub Pages:</span> <span class="muted">jesecor.github.io/portfolio</span>
+        </p>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="small">
+        Tip: Replace the "add link" placeholders in projects once your Streamlit, Kaggle, Market, or presentation URLs are ready.
+      </p>
+
+      <p class="small" style="margin-top:auto;">
+        Last updated: <span id="d"></span>
+      </p>
+    </aside>
+
+    <!-- RIGHT PANEL (SCROLLING) -->
+    <main class="right" id="scrollPane">
+
+      <section id="projects">
+        <h2 class="sectionTitle">Projects</h2>
 
         <div class="twoCol">
           <div class="card">
@@ -319,8 +385,6 @@
             </div>
           </div>
         </div>
-
-        <div style="height:12px"></div>
 
         <div class="grid">
           <div class="card">
@@ -433,57 +497,81 @@
             </div>
           </div>
         </div>
-
-        <p class="muted" style="margin:12px 0 0;font-size:13px;">
-          Tip: replace the "add link" placeholders with your Streamlit, Kaggle, Market, or presentation URLs when you have them.
-        </p>
       </section>
 
-      <section id="skills" class="section">
-        <h2>Skills snapshot</h2>
+      <section id="skills" style="margin-top:18px;">
+        <h2 class="sectionTitle">Skills snapshot</h2>
+
         <div class="grid">
           <div class="card">
             <h3 style="margin-top:0;">Data science and ML</h3>
-            <p class="muted" style="margin:8px 0 0;">Python, R, statistical analysis, predictive modelling, time-series forecasting, data wrangling.</p>
+            <p class="muted" style="margin:8px 0 0;">
+              Python, R, statistical analysis, predictive modelling, time-series forecasting, data wrangling.
+            </p>
           </div>
+
           <div class="card">
             <h3 style="margin-top:0;">BI and visualization</h3>
-            <p class="muted" style="margin:8px 0 0;">Power BI, Qlik Sense, Plotly, Matplotlib, Seaborn, Streamlit.</p>
+            <p class="muted" style="margin:8px 0 0;">
+              Power BI, Qlik Sense, Plotly, Matplotlib, Seaborn, Streamlit.
+            </p>
           </div>
+
           <div class="card">
             <h3 style="margin-top:0;">Data storage and engineering</h3>
-            <p class="muted" style="margin:8px 0 0;">SQL Server, SQLite, relational design, querying, optimization, ETL pipelines.</p>
+            <p class="muted" style="margin:8px 0 0;">
+              SQL Server, SQLite, relational design, querying, optimization, ETL pipelines.
+            </p>
           </div>
+
           <div class="card">
             <h3 style="margin-top:0;">Software and DevOps basics</h3>
-            <p class="muted" style="margin:8px 0 0;">Python, C#, SQL, PHP, VB, MQL5, Jade, .NET, Git and GitHub, CI basics, testing, packaging, documentation.</p>
+            <p class="muted" style="margin:8px 0 0;">
+              Python, C#, SQL, PHP, VB, MQL5, Jade, .NET, Git and GitHub, CI basics, testing, packaging, documentation.
+            </p>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="section">
-        <h2>Contact</h2>
+      <section id="contact" style="margin-top:18px;">
+        <h2 class="sectionTitle">Contact</h2>
         <div class="card">
           <p style="margin:0;">
             Email: <a class="plainLink" href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
-            Location: Auckland, New Zealand<br />
+            Location: <span class="muted">Auckland, New Zealand</span><br />
             GitHub: <a class="plainLink" href="https://github.com/jeseacor" target="_blank" rel="noreferrer">github.com/jeseacor</a>
           </p>
           <p class="muted" style="margin:10px 0 0;font-size:13px;">
-            Add your LinkedIn and Kaggle profile links in the top buttons when ready.
+            Add your LinkedIn and Kaggle profile links in the left panel when ready.
           </p>
+        </div>
+
+        <div class="footer">
+          <div>Last updated: <span id="d2"></span></div>
         </div>
       </section>
 
-      <footer>
-        <div>Last updated: <span id="d"></span></div>
-      </footer>
-
     </main>
+
   </div>
 
   <script>
-    document.getElementById("d").textContent = new Date().toISOString().slice(0, 10);
+    // Dates
+    const today = new Date().toISOString().slice(0, 10);
+    document.getElementById("d").textContent = today;
+    document.getElementById("d2").textContent = today;
+
+    // Scroll right pane to section when clicking left buttons
+    const pane = document.getElementById("scrollPane");
+    document.querySelectorAll("[data-target]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-target");
+        const el = document.getElementById(id);
+        if (!el) return;
+        const top = el.offsetTop;
+        pane.scrollTo({ top: top - 6, behavior: "smooth" });
+      });
+    });
   </script>
 </body>
 </html>
