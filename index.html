@@ -13,19 +13,89 @@
       --text:#e9eef5;
       --muted:#aab6c6;
       --line:#243041;
-      --accent:#7dd3fc;
+
+      /* Design accents */
+      --title:#7dd3fc;      /* card titles */
+      --link:#a78bfa;       /* links */
+      --linkHover:#c4b5fd;  /* link hover */
+      --focus:#7dd3fc;
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% -10%, #0f2a3a 0%, var(--bg) 50%), var(--bg);
+      background: radial-gradient(1200px 600px at 20% -10%, #0f2a3a 0%, var(--bg) 52%), var(--bg);
       color:var(--text);
       line-height:1.55;
     }
+
     a{color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
-    header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px 60px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    h1{
+      font-size:36px;
+      margin:0;
+      letter-spacing:0.2px;
+    }
+
+    .kicker{
+      color:var(--muted);
+      font-size:13px;
+      margin:6px 0 0;
+    }
+
+    .subtitle{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width:880px;
+    }
+
+    nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      text-decoration:none;
+      font-size:14px;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .btn:hover{
+      border-color:#34506f;
+      background: rgba(255,255,255,0.04);
+      transform: translateY(-1px);
+    }
+
+    .btn:focus{
+      outline:2px solid rgba(125,211,252,0.65);
+      outline-offset:2px;
+    }
+
     .badge{
       border:1px solid var(--line);
       background: rgba(255,255,255,0.03);
@@ -35,71 +105,121 @@
       font-size:13px;
       white-space:nowrap;
     }
-    h1{font-size:36px;margin:0}
-    .subtitle{margin:8px 0 0;color:var(--muted);max-width:850px}
-    nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:10px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      text-decoration:none;
-      font-size:14px;
-    }
-    .btn:hover{border-color:#34506f}
+
     main{margin-top:26px}
+
     .section{
       margin-top:22px;
       padding-top:10px;
     }
-    .section h2{margin:0 0 10px;font-size:20px}
-    .card{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      border-radius:14px;
-      padding:16px;
+
+    .section h2{
+      margin:0 0 10px;
+      font-size:20px;
+      letter-spacing:0.2px;
     }
+
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap:14px;
     }
-    .muted{color:var(--muted)}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .chip{
-      font-size:12px;color:var(--muted);
-      border:1px solid var(--line);
-      padding:5px 8px;border-radius:999px;
-      background: rgba(255,255,255,0.02);
-    }
-    .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .links a{
-      font-size:13px;
-      text-decoration:none;
-      border-bottom:1px solid rgba(125,211,252,0.35);
-      color:var(--text);
-      padding-bottom:2px;
-    }
-    .links a:hover{border-bottom-color:var(--accent)}
+
     .twoCol{
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap:14px;
     }
+
     @media (max-width: 860px){
       .twoCol{grid-template-columns:1fr}
     }
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border-radius:14px;
+      padding:16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .card:hover{
+      border-color:#34506f;
+      transform: translateY(-1px);
+    }
+
+    .card h3{
+      margin:0 0 6px;
+      color:var(--title);
+      letter-spacing:0.2px;
+    }
+
+    .card h3::after{
+      content:"";
+      display:block;
+      width:42px;
+      height:2px;
+      margin-top:8px;
+      background: rgba(125,211,252,0.55);
+      border-radius:999px;
+    }
+
+    .muted{color:var(--muted)}
+
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .chip{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      padding:5px 8px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Link "pills" */
+    .links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .links a{
+      font-size:13px;
+      text-decoration:none;
+      color:var(--link);
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid rgba(167,139,250,0.35);
+      background: rgba(167,139,250,0.08);
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+    }
+
+    .links a:hover{
+      color:var(--linkHover);
+      border-color: rgba(196,181,253,0.6);
+      background: rgba(167,139,250,0.14);
+      transform: translateY(-1px);
+    }
+
+    .links a:focus{
+      outline:2px solid rgba(125,211,252,0.65);
+      outline-offset:2px;
+    }
+
     footer{
       margin-top:26px;
       color:var(--muted);
       font-size:13px;
       border-top:1px solid var(--line);
       padding-top:14px;
-    }
-    .kicker{
-      color:var(--muted);
-      font-size:13px;
-      margin:6px 0 0;
     }
   </style>
 </head>
@@ -116,7 +236,7 @@
           Hands-on software developer and data professional with experience building and supporting business systems,
           dashboards, and data-driven tools. Completed a Master of Information Sciences (with distinction), focused on
           applied data science, automation, and software development. Strong in Python, SQL, relational data modelling,
-          ETL pipelines, and BI tools. 
+          ETL pipelines, and BI tools.
         </p>
 
         <nav>
@@ -140,7 +260,7 @@
 
         <div class="twoCol">
           <div class="card">
-            <h3 style="margin:0 0 6px;">GoalScope SDG Analytics Hub (Capstone, 2025)</h3>
+            <h3>GoalScope SDG Analytics Hub (Capstone, 2025)</h3>
             <p class="muted" style="margin:0;">
               End-to-end SDG analytics hub integrating UN and ArcGIS APIs. Produces clean datasets and includes
               performance rankings, trends and projections (ETS), correlation heatmaps, network graphs, PCA/biplot,
@@ -158,22 +278,23 @@
             <div class="links">
               <a href="https://github.com/jeseacor/sdg_streamlit" target="_blank" rel="noreferrer">Repo</a>
               <a href="https://www.kaggle.com/code/jeseacor/analyzing-global-sdg-indicators" target="_blank" rel="noreferrer">Kaggle notebook</a>
-              <!-- Add your Streamlit public URL when ready -->
               <a href="#" target="_blank" rel="noreferrer">Streamlit app (add link)</a>
             </div>
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">StrideLab.IQ Fitness Analytics and Run-Time Prediction</h3>
+            <h3>StrideLab.IQ Fitness Analytics and Run-Time Prediction</h3>
             <p class="muted" style="margin:0;">
               Full data science workflow using a real-world personal dataset of 9 years of Garmin activity data.
               Goal: predict run duration using biometric and environmental variables.
             </p>
+
             <div class="chips">
               <span class="chip">Prediction</span>
               <span class="chip">Real-world dataset</span>
               <span class="chip">Streamlit</span>
             </div>
+
             <div class="links">
               <a href="#" target="_blank" rel="noreferrer">Streamlit app (add link)</a>
             </div>
@@ -184,7 +305,7 @@
 
         <div class="grid">
           <div class="card">
-            <h3 style="margin:0 0 6px;">Geology Forecast Challenge (Kaggle)</h3>
+            <h3>Geology Forecast Challenge (Kaggle)</h3>
             <p class="muted" style="margin:0;">
               Time-series regression predicting the next 300-step Z-depth sequence from the previous 300-step history,
               simulating what a tunnel boring machine could encounter.
@@ -200,7 +321,7 @@
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">Regional Disparities in NZ</h3>
+            <h3>Regional Disparities in NZ</h3>
             <p class="muted" style="margin:0;">
               Compares regions in New Zealand by income, population, and related statistics using online sources
               including the Stats NZ API and Wikipedia.
@@ -216,7 +337,7 @@
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">Socio-economic Trends and Inequalities in NZ</h3>
+            <h3>Socio-economic Trends and Inequalities in NZ</h3>
             <p class="muted" style="margin:0;">
               Explores New Zealand socio-economic indicators from 1982 to recent years, including income and wealth
               distribution, housing, education access, labour market stability, health outcomes, and public safety.
@@ -232,7 +353,7 @@
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">Analyzing Migration Trends in New Zealand</h3>
+            <h3>Analyzing Migration Trends in New Zealand</h3>
             <p class="muted" style="margin:0;">
               Uses Stats NZ data on monthly arrivals, categorized by date, visa type, and citizenship of migrants.
             </p>
@@ -247,7 +368,7 @@
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">XFChart EA (MetaTrader 5 Trading Utility)</h3>
+            <h3>XFChart EA (MetaTrader 5 Trading Utility)</h3>
             <p class="muted" style="margin:0;">
               Trading utility with customizable options to support different styles from scalping to position trading.
               Public portion of a larger auto-trading robot shared to help other traders.
@@ -262,7 +383,7 @@
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">Object-Oriented Software in Jade</h3>
+            <h3>Object-Oriented Software in Jade</h3>
             <p class="muted" style="margin:0;">
               Designed and implemented a Repair Services System (RSS) using Jade for the object-oriented backend and
               system logic.
@@ -278,7 +399,7 @@
           </div>
 
           <div class="card">
-            <h3 style="margin:0 0 6px;">Moving Target D* Lite (C#)</h3>
+            <h3>Moving Target D* Lite (C#)</h3>
             <p class="muted" style="margin:0;">
               Implements Moving Target D* Lite in a grid environment, recalculating optimal paths in real time as the
               target moves and obstacles change using a heuristic-based priority queue.
@@ -303,19 +424,19 @@
         <h2>Skills snapshot</h2>
         <div class="grid">
           <div class="card">
-            <strong>Data science and ML</strong>
+            <h3 style="margin-top:0;">Data science and ML</h3>
             <p class="muted" style="margin:8px 0 0;">Python, R, statistical analysis, predictive modelling, time-series forecasting, data wrangling.</p>
           </div>
           <div class="card">
-            <strong>BI and visualization</strong>
+            <h3 style="margin-top:0;">BI and visualization</h3>
             <p class="muted" style="margin:8px 0 0;">Power BI, Qlik Sense, Plotly, Matplotlib, Seaborn, Streamlit.</p>
           </div>
           <div class="card">
-            <strong>Data storage and engineering</strong>
+            <h3 style="margin-top:0;">Data storage and engineering</h3>
             <p class="muted" style="margin:8px 0 0;">SQL Server, SQLite, relational design, querying, optimization, ETL pipelines.</p>
           </div>
           <div class="card">
-            <strong>Software and DevOps basics</strong>
+            <h3 style="margin-top:0;">Software and DevOps basics</h3>
             <p class="muted" style="margin:8px 0 0;">Python, C#, SQL, PHP, VB, MQL5, Jade, .NET, Git and GitHub, CI basics, testing, packaging, documentation.</p>
           </div>
         </div>
@@ -325,9 +446,9 @@
         <h2>Contact</h2>
         <div class="card">
           <p style="margin:0;">
-            Email: <a href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
+            Email: <a class="plainLink" href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
             Location: Auckland, New Zealand<br />
-            GitHub: <a href="https://github.com/jeseacor" target="_blank" rel="noreferrer">github.com/jeseacor</a>
+            GitHub: <a class="plainLink" href="https://github.com/jeseacor" target="_blank" rel="noreferrer">github.com/jeseacor</a>
           </p>
           <p class="muted" style="margin:10px 0 0;font-size:13px;">
             Add your LinkedIn and Kaggle profile links in the top buttons when ready.
