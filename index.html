@@ -71,14 +71,16 @@
     /* Sidebar content */
     h1{
       margin: 0;
-      font-size: 32px;
+      font-size: 30px;
       letter-spacing: 0.2px;
+      text-align:center;
     }
 
     .kicker{
       margin: 6px 0 0;
       color: var(--muted);
       font-size: 13px;
+      text-align:center;
     }
 
     .intro{
@@ -149,6 +151,23 @@
       transform: translateY(-1px);
     }
 
+    /* Avatar */
+    .avatarWrap{
+      display:flex;
+      justify-content:center;
+      margin-top: 4px;
+    }
+
+    .avatar{
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid var(--line);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.10);
+      background: #fff;
+    }
+
     .chips{
       display:flex;
       gap:8px;
@@ -185,17 +204,17 @@
       letter-spacing: 0.2px;
     }
 
+    /* One card per row */
     .grid{
       display:grid;
-      /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
-      grid-template-columns: 1fr; /* one card per row */
+      grid-template-columns: 1fr;
       gap: 14px;
     }
 
+    /* Stack the two "featured" projects too */
     .twoCol{
       display:grid;
-      /* grid-template-columns: 1.2fr 0.8fr; */
-      grid-template-columns: 1fr; /* stack featured cards */
+      grid-template-columns: 1fr;
       gap: 14px;
       margin-bottom: 14px;
     }
@@ -280,9 +299,6 @@
       .right{
         overflow: visible;
       }
-      .twoCol{
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -298,7 +314,12 @@
     <!-- LEFT PANEL -->
     <aside class="left">
       <div>
-        <h1>Jesus Eric Seacor</h1>
+        <!-- Update the filename/path if yours is different -->
+        <div class="avatarWrap">
+          <img class="avatar" src="assets/147.JPG" alt="Jesus Eric Seacor" />
+        </div>
+
+        <h1 style="margin-top:12px;">Jesus Eric Seacor</h1>
         <p class="kicker">Auckland, New Zealand</p>
       </div>
 
@@ -340,7 +361,8 @@
         <p style="margin:10px 0 0; font-size:14px;">
           <a class="plainLink" href="mailto:ericseacor@gmail.com">ericseacor@gmail.com</a><br />
           <span class="muted">Location:</span> Auckland, New Zealand<br />
-          <span class="muted">Portfolio:</span> <a class="plainLink" href="https://jesecor.github.io/portfolio/" target="_blank" rel="noreferrer">jesecor.github.io/portfolio</a>
+          <span class="muted">Portfolio:</span>
+          <a class="plainLink" href="https://jesecor.github.io/portfolio/" target="_blank" rel="noreferrer">jesecor.github.io/portfolio</a>
         </p>
       </div>
 
